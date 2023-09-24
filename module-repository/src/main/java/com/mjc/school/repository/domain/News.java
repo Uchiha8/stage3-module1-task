@@ -1,9 +1,10 @@
 package com.mjc.school.repository.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -16,10 +17,11 @@ public class News {
     @NonNull
     private String content;
     @NonNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime createDate;
     @NonNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime lastUpdateDate;
     @NonNull
     private Long authorId;
-
 }
