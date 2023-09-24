@@ -1,7 +1,11 @@
 package com.mjc.school.repository.domain;
 
-import lombok.NonNull;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Author {
     @NonNull
     private Long id;

@@ -3,4 +3,5 @@ include 'module-main'
 include 'module-repository'
 include 'module-service'
 include 'module-web'
+include 'module-web'
 
