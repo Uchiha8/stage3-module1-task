@@ -1,0 +1,5 @@
+1 : Hero : 1
+2 : Alien : 2
+3 : Skill : 3
+4 : Nerd : 4
+5 : Power : 5
