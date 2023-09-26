@@ -10,7 +10,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.mapstruct:mapstruct:1.5.4.Final'
     implementation project(path: ':module-repository')
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
