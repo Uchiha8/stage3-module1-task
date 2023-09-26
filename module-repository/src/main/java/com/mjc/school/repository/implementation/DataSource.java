@@ -44,12 +44,10 @@ public class DataSource {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" : ");
-                News news = new News();
-                news.setId(Long.valueOf(parts[0]));
-                news.setTitle(parts[1]);
-                news.setAuthorId(Long.valueOf(parts[2]));
-                news.setCreateDate(LocalDateTime.now());
-                news.setLastUpdateDate(LocalDateTime.now());
+                Long id = Long.valueOf(parts[0]);
+                String title = parts[1];
+                Long authorId = Long.valueOf(parts[2]);
+                News news = new News(id, title, null, LocalDateTime.now(), LocalDateTime.now(), authorId);
                 news = parseContent(news);
                 newsList.add(news);
             }
@@ -92,8 +90,14 @@ public class DataSource {
         }
     }
 
-    public void save(News news) {
+    public News saveNews(News news) {
         newsList.add(news);
+        return news;
+    }
+
+    public Author saveAuthor(Author author) {
+        authorList.add(author);
+        return author;
     }
 
     public Boolean deleteById(Long id) {

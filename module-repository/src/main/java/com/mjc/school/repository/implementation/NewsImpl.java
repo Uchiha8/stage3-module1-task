@@ -7,12 +7,7 @@ import com.mjc.school.repository.exceptions.NewsNotFoundException;
 import java.util.List;
 
 public class NewsImpl implements NewsRepository {
-
-    private final DataSource dataSource;
-
-    public NewsImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private final DataSource dataSource = DataSource.getInstance();
 
     @Override
     public List<News> getAllNews() {
@@ -36,7 +31,7 @@ public class NewsImpl implements NewsRepository {
     public News create(News news) throws NewsNotFoundException {
         Long id = (long) (dataSource.getNewsList().size() + 1);
         news.setId(id);
-        dataSource.save(news);
+        dataSource.saveNews(news);
         return getNewsById(id);
     }
 
@@ -53,7 +48,6 @@ public class NewsImpl implements NewsRepository {
         }
         return news;
     }
-
 
     @Override
     public Boolean deleteById(Long id) {
