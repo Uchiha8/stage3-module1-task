@@ -17,8 +17,8 @@ public class DataSource {
         return INSTANCE;
     }
 
-    private static final String NEWS_FILE_PATH = "resources/news.txt";
-    private static final String AUTHOR_FILE_PATH = "resources/author.txt";
+    private static final String NEWS_FILE_PATH = "module-repository/src/main/resources/news.txt";
+    private static final String AUTHOR_FILE_PATH = "module-repository/src/main/resources/author.txt";
 
     private static List<News> newsList = new ArrayList<>();
     private static List<Author> authorsList = new ArrayList<>();
