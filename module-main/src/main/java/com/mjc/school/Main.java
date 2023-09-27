@@ -14,7 +14,8 @@ public class Main {
     }
 
     public static void action() {
-        while (true) {
+        boolean status = true;
+        while (status) {
             listOfFunctions();
             Scanner scanner = new Scanner(System.in);
             int numOfFunction = scanner.nextInt();
@@ -60,6 +61,9 @@ public class Main {
                     newsController.deleteNewsById(id);
                     break;
                 }
+                case 6: {
+                    status = false;
+                }
                 default:
                     System.out.println("Are you crazy.... :)");
             }
@@ -72,7 +76,8 @@ public class Main {
                 "2 -> Get News by id\n" +
                 "3 -> Create News by id\n" +
                 "4 -> Update news by id\n" +
-                "5 -> Delete news by id\n");
+                "5 -> Delete news by id\n" +
+                "6 -> Exit");
 
     }
 }
