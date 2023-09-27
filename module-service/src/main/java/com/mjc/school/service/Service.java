@@ -9,7 +9,7 @@ public interface Service<T> {
 
     List<T> readAll();
 
-    T update(T t, Long id);
+    T update(T t);
 
     Boolean delete(Long id);
 

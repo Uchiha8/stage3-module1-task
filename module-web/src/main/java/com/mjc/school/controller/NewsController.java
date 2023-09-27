@@ -20,8 +20,8 @@ public class NewsController {
         System.out.println(newsService.readById(id));
     }
 
-    public void updateNewsById(NewsDTO newsDTO, Long id) {
-        System.out.println(newsService.update(newsDTO, id));
+    public void updateNewsById(NewsDTO newsDTO) {
+        System.out.println(newsService.update(newsDTO));
     }
 
     public void create(NewsDTO newsDTO) {

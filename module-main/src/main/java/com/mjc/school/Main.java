@@ -52,7 +52,7 @@ public class Main {
                     System.out.print("Enter updated author ID: ");
                     Long authorID = scanner.nextLong();
                     NewsDTO newsDTO = new NewsDTO(title, content, authorID);
-                    newsController.updateNewsById(newsDTO, id);
+                    newsController.updateNewsById(newsDTO);
                     break;
                 }
                 case 5: {

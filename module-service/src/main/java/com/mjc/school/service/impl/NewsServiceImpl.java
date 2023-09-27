@@ -32,7 +32,7 @@ public class NewsServiceImpl implements Service<NewsDTO> {
     @Override
     public NewsDTO readById(Long id) {
         try {
-            NewsDTO newsDTO = newsMapper.toDTO(newsRepository.getNewsById(id));
+            NewsDTO newsDTO = newsMapper.toDTO(newsRepository.readBy(id));
             return newsDTO;
         } catch (NewsNotFoundException e) {
             throw new RuntimeException(e);
@@ -41,7 +41,7 @@ public class NewsServiceImpl implements Service<NewsDTO> {
 
     @Override
     public List<NewsDTO> readAll() {
-        List<News> newsList = newsRepository.getAllNews();
+        List<News> newsList = newsRepository.readAll();
         List<NewsDTO> newsDTOList = new ArrayList<>();
         for (News news : newsList) {
             newsDTOList.add(newsMapper.toDTO(news));
@@ -50,9 +50,9 @@ public class NewsServiceImpl implements Service<NewsDTO> {
     }
 
     @Override
-    public NewsDTO update(NewsDTO newsDTO, Long id) {
-        if (validParam(newsDTO) && existNews(id)) {
-            newsRepository.updateNewsById(newsMapper.toModel(newsDTO), id);
+    public NewsDTO update(NewsDTO newsDTO) {
+        if (validParam(newsDTO) && existNews(newsDTO.getId())) {
+            newsRepository.updateNewsById(newsMapper.toModel(newsDTO));
         }
         return newsDTO;
     }
@@ -79,7 +79,7 @@ public class NewsServiceImpl implements Service<NewsDTO> {
 
     public boolean existNews(Long id) {
         try {
-            News news = newsRepository.getNewsById(id);
+            News news = newsRepository.readBy(id);
             return true;
         } catch (NewsNotFoundException e) {
             throw new RuntimeException("News with provided ID: " + id + " not found");

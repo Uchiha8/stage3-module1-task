@@ -17,26 +17,14 @@ public class NewsRepositoryImpl implements NewsRepository<News> {
     }
 
     @Override
-    public List getAllNews() {
+    public List readAll() {
         return dataSource.getNewsList();
     }
 
     @Override
-    public News getNewsById(Long id) throws NewsNotFoundException {
-        List<News> newsList = dataSource.getNewsList();
-        for (News news : newsList) {
-            if (news.getId() == id) {
-                return news;
-            }
-        }
-        throw new NewsNotFoundException("News with ID: " + id + " not found");
-    }
-
-    @Override
-    public News updateNewsById(News news, Long id) {
+    public News updateNewsById(News news) {
         try {
-            News update_news = getNewsById(id);
-            update_news.setId(news.getId());
+            News update_news = readBy(news.getId());
             update_news.setTitle(news.getTitle());
             update_news.setContent(news.getContent());
             update_news.setAuthorId(news.getAuthorId());
@@ -45,6 +33,17 @@ public class NewsRepositoryImpl implements NewsRepository<News> {
         } catch (NewsNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public News readBy(Long id) throws NewsNotFoundException {
+        List<News> newsList = dataSource.getNewsList();
+        for (News news : newsList) {
+            if (news.getId() == id) {
+                return news;
+            }
+        }
+        throw new NewsNotFoundException("News with ID: " + id + " not found");
     }
 
     @Override

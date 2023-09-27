@@ -4,14 +4,10 @@ import com.mjc.school.repository.exceptions.NewsNotFoundException;
 
 import java.util.List;
 
-public interface NewsRepository<News> {
-    News create(News news);
-
-    List<News> getAllNews();
-
-    News getNewsById(Long id) throws NewsNotFoundException;
-
-    News updateNewsById(News news, Long id);
-
+public interface NewsRepository<T> {
+    T create(T t);
+    T readBy(Long id) throws NewsNotFoundException;
+    List<T> readAll();
+    T updateNewsById(T t);
     Boolean deleteNewsById(Long id);
 }
