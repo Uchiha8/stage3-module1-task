@@ -1,6 +1,6 @@
 package com.mjc.school.service.mapper;
 
-import com.mjc.school.repository.implementation.News;
+import com.mjc.school.repository.implementation.NewsModel;
 import com.mjc.school.service.dto.NewsDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface NewsMapper {
     NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
 
-    NewsDTO toDTO(News news);
+    NewsDTO toDTO(NewsModel newsModel);
 
-    News toModel(NewsDTO newsDTO);
+    NewsModel toModel(NewsDTO newsDTO);
 }

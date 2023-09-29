@@ -42,9 +42,9 @@ The system should expose the following operations from the __main__ module in th
 - [x] CRUD operations [(what_is_CRUD)](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) for News.
 - [x] Create operation – fill only title, content, authorId and return created object.
 - [x] Get All News operation – return list of objects.
-- [x] Get News by id operation – return object by provided news id.
-- [x] For update operation – update only title, content, authorId by provided news id and return updated object.
-- [x] Delete News operation – delete entity from list objects by provided news id and return boolean value.
+- [x] Get News by id operation – return object by provided newsModel id.
+- [x] For update operation – update only title, content, authorId by provided newsModel id and return updated object.
+- [x] Delete News operation – delete entity from list objects by provided newsModel id and return boolean value.
 
 All returned and received data should be like [DTO](https://en.wikipedia.org/wiki/Data_transfer_object) type.
 
@@ -59,8 +59,8 @@ For example: [Mapstruct](https://mapstruct.org/), [Modelmapper](http://modelmapp
 2. App should be designed and written with respect to OOD and SOLID principles.
 3. Clear layered structure should be used with responsibilities of each application layer defined.
 4. All business logic should be written in the module-service: mapping model to DTO and vice versa, validation, etc.
-5. All the news data should be generated automatically in the module-repository with the amount of 20 and stored in array (database emulation) when the application is running.
-   Reading default data for news generating should be from resources package in author.txt, content.txt and news.txt files.
+5. All the newsModel data should be generated automatically in the module-repository with the amount of 20 and stored in array (database emulation) when the application is running.
+   Reading default data for newsModel generating should be from resources package in author.txt, content.txt and newsModel.txt files.
 6. module-web and module-service should accept and return dto objects.
 7. module-repository should take and return model objects.
 8. Convenient error/exception should be implemented: all errors should be meaningful.
@@ -75,9 +75,9 @@ For example: [Mapstruct](https://mapstruct.org/), [Modelmapper](http://modelmapp
 
 ## Solution:
 
-The finished sample application can be found in the [__solution__](./solution/news-management.jar) package at the root of the project, which can be run with the following command:
+The finished sample application can be found in the [__solution__](./solution/newsModel-management.jar) package at the root of the project, which can be run with the following command:
 ``` java
-   java -jar news-management.jar
+   java -jar newsModel-management.jar
 ```
 
 ## Our solution review:

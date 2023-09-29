@@ -20,20 +20,20 @@ public class DataSource {
     private static final String NEWS_FILE_PATH = "module-repository/src/main/resources/news.txt";
     private static final String AUTHOR_FILE_PATH = "module-repository/src/main/resources/author.txt";
 
-    private static List<News> newsList = new ArrayList<>();
+    private static List<NewsModel> newsModelList = new ArrayList<>();
     private static List<Author> authorsList = new ArrayList<>();
 
-    public List<News> getNewsList() {
-        return newsList;
+    public List<NewsModel> getNewsList() {
+        return newsModelList;
     }
 
     public List<Author> getAuthorsList() {
         return authorsList;
     }
 
-    public News addNews(News news) {
-        newsList.add(news);
-        return news;
+    public NewsModel addNews(NewsModel newsModel) {
+        newsModelList.add(newsModel);
+        return newsModel;
     }
 
     public Author addAuthor(Author author) {
@@ -42,7 +42,7 @@ public class DataSource {
     }
 
     public Boolean removeNews(Long id) {
-        return newsList.remove(id);
+        return newsModelList.remove(id);
     }
 
     public Boolean removeAuthor(Long id) {
@@ -62,8 +62,8 @@ public class DataSource {
                 LocalDateTime createDate = LocalDateTime.now();
                 LocalDateTime lastUpdateDate = LocalDateTime.now();
                 Long authorId = Long.valueOf(partsNews[3]);
-                News news = new News(id, title, content, createDate, lastUpdateDate, authorId);
-                newsList.add(news);
+                NewsModel newsModel = new NewsModel(id, title, content, createDate, lastUpdateDate, authorId);
+                newsModelList.add(newsModel);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

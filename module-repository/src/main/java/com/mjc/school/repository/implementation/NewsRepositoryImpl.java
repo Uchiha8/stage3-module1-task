@@ -6,14 +6,17 @@ import com.mjc.school.repository.exceptions.NewsNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsRepositoryImpl implements NewsRepository<News> {
+public class NewsRepositoryImpl implements NewsRepository<NewsModel> {
+    private final DataSource dataSource;
 
-    private final DataSource dataSource = DataSource.getInstance();
+    public NewsRepositoryImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
-    public News create(News news) {
-        dataSource.addNews(news);
-        return news;
+    public NewsModel create(NewsModel newsModel) {
+        dataSource.addNews(newsModel);
+        return newsModel;
     }
 
     @Override
@@ -22,25 +25,25 @@ public class NewsRepositoryImpl implements NewsRepository<News> {
     }
 
     @Override
-    public News updateNewsById(News news) {
+    public NewsModel updateNewsById(NewsModel newsModel) {
         try {
-            News update_news = readBy(news.getId());
-            update_news.setTitle(news.getTitle());
-            update_news.setContent(news.getContent());
-            update_news.setAuthorId(news.getAuthorId());
-            update_news.setLastUpdateDate(LocalDateTime.now());
-            return update_news;
+            NewsModel update_newsModel = readBy(newsModel.getId());
+            update_newsModel.setTitle(newsModel.getTitle());
+            update_newsModel.setContent(newsModel.getContent());
+            update_newsModel.setAuthorId(newsModel.getAuthorId());
+            update_newsModel.setLastUpdateDate(LocalDateTime.now());
+            return update_newsModel;
         } catch (NewsNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public News readBy(Long id) throws NewsNotFoundException {
-        List<News> newsList = dataSource.getNewsList();
-        for (News news : newsList) {
-            if (news.getId() == id) {
-                return news;
+    public NewsModel readBy(Long id) throws NewsNotFoundException {
+        List<NewsModel> newsModelList = dataSource.getNewsList();
+        for (NewsModel newsModel : newsModelList) {
+            if (newsModel.getId() == id) {
+                return newsModel;
             }
         }
         throw new NewsNotFoundException("News with ID: " + id + " not found");

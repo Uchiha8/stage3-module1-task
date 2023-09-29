@@ -1,7 +1,7 @@
 package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.exceptions.NewsNotFoundException;
-import com.mjc.school.repository.implementation.News;
+import com.mjc.school.repository.implementation.NewsModel;
 import com.mjc.school.repository.implementation.NewsRepositoryImpl;
 import com.mjc.school.service.Service;
 import com.mjc.school.service.dto.NewsDTO;
@@ -23,8 +23,8 @@ public class NewsServiceImpl implements Service<NewsDTO> {
     @Override
     public NewsDTO create(NewsDTO newsDTO) {
         if (validParam(newsDTO)) {
-            News news = newsMapper.toModel(newsDTO);
-            newsRepository.create(news);
+            NewsModel newsModel = newsMapper.toModel(newsDTO);
+            newsRepository.create(newsModel);
         }
         return newsDTO;
     }
@@ -41,10 +41,10 @@ public class NewsServiceImpl implements Service<NewsDTO> {
 
     @Override
     public List<NewsDTO> readAll() {
-        List<News> newsList = newsRepository.readAll();
+        List<NewsModel> newsModelList = newsRepository.readAll();
         List<NewsDTO> newsDTOList = new ArrayList<>();
-        for (News news : newsList) {
-            newsDTOList.add(newsMapper.toDTO(news));
+        for (NewsModel newsModel : newsModelList) {
+            newsDTOList.add(newsMapper.toDTO(newsModel));
         }
         return newsDTOList;
     }
@@ -79,7 +79,7 @@ public class NewsServiceImpl implements Service<NewsDTO> {
 
     public boolean existNews(Long id) {
         try {
-            News news = newsRepository.readBy(id);
+            NewsModel newsModel = newsRepository.readBy(id);
             return true;
         } catch (NewsNotFoundException e) {
             throw new RuntimeException("News with provided ID: " + id + " not found");
